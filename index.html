@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Myth Story Choices — A George &amp; Strider collab</title>
+<title>Myth Story Choices: A George &amp; Strider collab</title>
 <style>
   *{box-sizing:border-box}
   html,body{margin:0;padding:0;overflow-x:hidden}
@@ -31,6 +31,7 @@
   .myth b{color:#1a3a6b}
   .ending{background:#fff3c4;border:2px solid #b8860b;border-radius:10px;padding:12px;margin-top:12px}
   .chapter-btn small{display:block;font-weight:400;font-size:14px;opacity:.9}
+  .newbadge{display:inline-block;background:#b8860b;color:#fff;font-family:system-ui,sans-serif;font-weight:700;font-size:14px;padding:6px 14px;border-radius:20px;margin:0 0 6px}
   .hidden{display:none}
   footer{text-align:center;font-size:12px;color:#5a4218;padding:18px 10px 6px;font-family:system-ui,sans-serif}
   @media (max-width:380px){body{font-size:17px}h1{font-size:23px}.wrap{padding:12px 10px 24px}.card{padding:14px}}
@@ -46,7 +47,7 @@
 
   <div class="card" id="homeScreen">
     <h2>Choose a chapter</h2>
-    <p>Play a myth, make the choices, then read what the traditional myth actually says. Versions of these myths differ — where they do, the game says so.</p>
+    <p>Play a myth, make the choices, then read what the traditional myth actually says. Versions of these myths differ. Where they do, the game says so.</p>
     <div class="stats" id="homeStats"></div>
     <div id="chapterList"></div>
     <p class="small" style="margin-top:14px">Tip: there is no single right answer. Different choices lead to different endings, and every ending teaches something.</p>
@@ -63,7 +64,7 @@
 
   <div class="card hidden" id="endingsScreen">
     <h2>Endings collection</h2>
-    <p>Endings you have found are named. Missing ones stay hidden as ??? — replay a chapter and choose differently to find them.</p>
+    <p>Endings you have found are named. Missing ones stay hidden as ???. Replay a chapter and choose differently to find them.</p>
     <div id="endingsList"></div>
     <button class="papyrus" id="endingsBackBtn">← Back to chapters</button>
   </div>
@@ -77,6 +78,7 @@
   </div>
 
   <div class="card hidden" id="endingScreen">
+    <p id="newEndingBadge" class="newbadge hidden">✦ New ending found!</p>
     <h2 id="endingTitle"></h2>
     <div class="ending"><p id="endingText" style="margin:0"></p></div>
     <div class="myth"><p style="margin:0 0 8px"><b>The real myth</b></p><p id="realMyth" style="margin:0 0 8px"></p><p class="small" style="margin:0" id="mythFact"></p></div>
@@ -107,24 +109,24 @@ S("start","Dusk falls over the Nile. Ra's sun barque sets sail into the west, in
 [C("Sail boldly, lights blazing","gate1",{courage:1}),C("Sail quietly, listening for danger","gate1q",{wisdom:1})]),
 S("gate1","The first gate looms, guarded by a serpent and a watcher who demands your name. Your light makes the shadows retreat, but Apophis stirs far below.",
 [C("Give your true name and pass with honour","river",{courage:1}),C("Ask the gatekeeper what Apophis fears","river2",{wisdom:1})]),
-S("gate1q","You sail in darkness, listening. You hear Apophis before you see him — a vast coiling in the water, and the whispered warnings of the dead.",
+S("gate1q","You sail in darkness, listening. You hear Apophis before you see him: a vast coiling in the water, and the whispered warnings of the dead.",
 [C("Turn toward the sound and face him early","river",{courage:1}),C("Slip past while he sleeps","river2",{wisdom:1})]),
 S("river","Midnight. Apophis rises and tries to swallow the barque whole. The crew trembles. The goddess Isis stands ready with a spell, and Set stands ready with a spear.",
 [C("Let Set strike with his spear","dawn",{courage:1}),C("Let Isis bind the serpent with magic","dawn2",{wisdom:1}),C("Help the rowers pull the barque free","dawn3",{kindness:1}),C("Wisdom: Speak Apophis's hidden name to bind him","dawn4",{wisdom:1},{trait:"wisdom",min:1})]),
-S("dawn4","You speak the serpent's hidden name, and Apophis recoils — named, he can be bound. Isis's spell wraps him in light, and the barque sails on unharmed.",
+S("dawn4","You speak the serpent's hidden name, and Apophis recoils. Named, he can be bound. Isis's spell wraps him in light, and the barque sails on unharmed.",
 [C("Sail on into the dawn","endD",{})]),
-E("endD","Ending: Dawn by the True Name","Ra rises because a name was known and spoken truly. In Egypt, a true name was power itself — and the serpent, once named, could not swallow the sun.","In Egyptian thought, knowing a god's or a demon's true name gave power over it. Isis herself gained power by learning Ra's secret name in another myth, and magicians guarded names as carefully as they guarded spells.","Fact: Ra was said to have many names, but one secret name that held his full power."),
-S("river2","You learn Apophis fears light and true names. When he rises at midnight, you are ready — but he is stronger than the stories said.",
+E("endD","Ending: Dawn by the True Name","Ra rises because a name was known and spoken truly. In Egypt, a true name was power itself, and the serpent, once named, could not swallow the sun.","In Egyptian thought, knowing a god's or a demon's true name gave power over it. Isis herself gained power by learning Ra's secret name in another myth, and magicians guarded names as carefully as they guarded spells.","Fact: Ra was said to have many names, but one secret name that held his full power."),
+S("river2","You learn Apophis fears light and true names. When he rises at midnight, you are ready, but he is stronger than the stories said.",
 [C("Shout his secret name to weaken him","dawn2",{wisdom:1}),C("Hold the lamp high so the crew can strike true","dawn",{courage:1})]),
 S("dawn","Set's spear drives Apophis back into the deep. Wounded, the serpent sinks. The eastern sky pales. The barque climbs toward morning.",
 [C("Sail on into the dawn","endA",{})]),
-S("dawn2","Isis speaks the binding spell. Coils of light hold Apophis still long enough for the barque to pass. He is not dead — serpents like him never truly die — but the night is won.",
+S("dawn2","Isis speaks the binding spell. Coils of light hold Apophis still long enough for the barque to pass. He is not dead (serpents like him never truly die), but the night is won.",
 [C("Sail on into the dawn","endB",{})]),
 S("dawn3","You haul on the oar beside the crew. Together you pull the barque free of the serpent's coils, and Apophis, denied his prey, sinks back in fury.",
 [C("Sail on into the dawn","endC",{})]),
-E("endA","Ending: Dawn by the Spear","Ra rises, fierce and triumphant. The fields wake to light, and the people give thanks — though the wise remember that Apophis will return tomorrow night, as he always does.","In the traditional myth, Ra travels through the Duat each night in his barque, and Apophis, the serpent of chaos, tries to stop him. In many versions Set, god of storms, defends the barque and spears Apophis. The journey repeats every night; it is never finished once and for all.","Fact: Egyptian texts describe twelve hours of night, each with its own gate, guardian, and dangers."),
+E("endA","Ending: Dawn by the Spear","Ra rises, fierce and triumphant. The fields wake to light, and the people give thanks, though the wise remember that Apophis will return tomorrow night, as he always does.","In the traditional myth, Ra travels through the Duat each night in his barque, and Apophis, the serpent of chaos, tries to stop him. In many versions Set, god of storms, defends the barque and spears Apophis. The journey repeats every night; it is never finished once and for all.","Fact: Egyptian texts describe twelve hours of night, each with its own gate, guardian, and dangers."),
 E("endB","Ending: Dawn by Magic","Ra rises by wisdom rather than force. Isis's spell held the serpent, and the barque slipped through the dark. Light returns, quietly, like a secret kept.","In the traditional myth, Ra travels through the Duat each night in his barque, and Apophis, the serpent of chaos, tries to stop him. Isis is the great magician of the myths, and her spells protect gods and people alike. Versions differ on exactly who strikes the decisive blow against Apophis.","Fact: Isis was called the greatest of magicians, and her name in Egyptian, Aset, means throne."),
-E("endC","Ending: Dawn by Many Hands","Ra rises because the crew rowed together. No single hero won the night — the barque itself, and everyone aboard it, carried the sun home.","In the traditional myth, Ra does not sail alone: gods and the blessed dead crew his barque through the Duat. Apophis attacks the barque itself, and holding the voyage together is itself a victory over chaos.","Fact: The sun barque was called the Mandjet by day and the Mesektet by night.")
+E("endC","Ending: Dawn by Many Hands","Ra rises because the crew rowed together. No single hero won the night. The barque itself, and everyone aboard it, carried the sun home.","In the traditional myth, Ra does not sail alone: gods and the blessed dead crew his barque through the Duat. Apophis attacks the barque itself, and holding the voyage together is itself a victory over chaos.","Fact: The sun barque was called the Mandjet by day and the Mesektet by night.")
 ]},
 {id:"osiris",title:"2. Osiris and Isis",blurb:"A king is murdered, a wife searches, and a son must decide what justice means.",codex:["osiris","isis","horus","seth"],scenes:[
 S("start","Osiris, king of Egypt, has been murdered by his brother Seth, who has hidden the body. His wife Isis searches the land, grieving. You travel with her. Where do you look first?",
@@ -133,25 +135,25 @@ S("byblos","In the reeds you find the chest, sealed and lost. Isis weeps over it
 [C("Guard the body while Isis rests","scattered",{courage:1}),C("Help Isis hide the body in the marshes","scattered2",{wisdom:1})]),
 S("byblos2","Town by town, the people point you onward. Some saw a strange chest; some saw Seth's men. The trail leads to the marshes, where Isis finds what she lost.",
 [C("Guard the body while Isis rests","scattered",{courage:1}),C("Help Isis hide the body in the marshes","scattered2",{wisdom:1})]),
-S("scattered","While Isis is away, Seth finds the body and tears it into pieces, scattering them across Egypt. All seems lost — but Isis does not give up.",
+S("scattered","While Isis is away, Seth finds the body and tears it into pieces, scattering them across Egypt. All seems lost, but Isis does not give up.",
 [C("Search with her, piece by piece, never stopping","rebirth",{kindness:1}),C("Use magic to call the pieces together","rebirth2",{wisdom:1})]),
 S("scattered2","The marshes hide the body for a time, but Seth hunts it down and scatters it across Egypt. Isis sets out again, undaunted.",
 [C("Search with her, piece by piece, never stopping","rebirth",{kindness:1}),C("Use magic to call the pieces together","rebirth2",{wisdom:1})]),
-S("rebirth","Piece by piece, Isis gathers Osiris. With her magic and her love, he lives again — not as king of the living, but as king of the dead, and father of Horus, who will one day face Seth.",
+S("rebirth","Piece by piece, Isis gathers Osiris. With her magic and her love, he lives again, not as king of the living but as king of the dead, and father of Horus, who will one day face Seth.",
 [C("Stand with Horus as he grows toward his trial","trial",{})]),
 S("rebirth2","Isis's magic draws the scattered pieces together. Osiris rises, changed: lord of the underworld, judge of the dead, and father of Horus.",
 [C("Stand with Horus as he grows toward his trial","trial",{})]),
 S("trial","Years pass. Horus, grown strong, stands before the gods to claim his father's throne. Seth, still powerful, argues that strength alone should rule. The gods turn to you. What should decide the kingship?",
 [C("Let the gods judge by right and by Maat","endA",{wisdom:1}),C("Let Horus prove himself in a contest of skill","endB",{courage:1}),C("Seek a settlement that leaves Seth a place, not nothing","endC",{kindness:1}),C("Kindness: Offer Seth a place in the new order first, before any judgement","endD",{kindness:1},{trait:"kindness",min:2})]),
-E("endD","Ending: A Place Kept for Seth","Before the gods judge, Horus offers Seth a place: the deserts, the storms, the lands beyond the fields. Seth accepts, and the trial ends not in ruin but in a boundary drawn. Order, again, is balance.","In the traditional myth, Seth keeps a role after losing to Horus — god of desert, storms, and foreign lands. Egyptian order, Maat, did not mean destroying chaos but keeping it in its place, outside the ordered fields.","Fact: Seth's animal, the mysterious Set animal, appears in art from Egypt's earliest dynasties and was never fully identified with a real creature."),
+E("endD","Ending: A Place Kept for Seth","Before the gods judge, Horus offers Seth a place: the deserts, the storms, the lands beyond the fields. Seth accepts, and the trial ends not in ruin but in a boundary drawn. Order, again, is balance.","In the traditional myth, Seth keeps a role after losing to Horus: god of desert, storms, and foreign lands. Egyptian order, Maat, did not mean destroying chaos but keeping it in its place, outside the ordered fields.","Fact: Seth's animal, the mysterious Set animal, appears in art from Egypt's earliest dynasties and was never fully identified with a real creature."),
 E("endA","Ending: Justice, Not Revenge","Horus grows strong, and when he faces Seth, the gods judge the matter rather than letting it end in blood alone. Osiris rules the dead with fairness, and the land learns that even a murdered king can be made whole by devotion.","In the traditional myth, Isis searches for Osiris after Seth murders him, gathers his scattered body, and restores him. Their son Horus then contests Seth for the kingship, and the gods eventually award it to Horus. Osiris becomes ruler of the underworld.","Fact: The story was retold at Abydos, Osiris's cult centre, where pilgrims hoped to share in his rebirth."),
-E("endB","Ending: Rebirth by Magic","Osiris lives again through Isis's magic, and that magic becomes the model for every Egyptian funeral rite: what was done for Osiris, priests would do for the dead, so they too might live again.","In the traditional myth, Isis is the great magician whose spells restore Osiris. Egyptian funerals deliberately echoed this myth — the dead were identified with Osiris, and rites aimed to give them new life as he had received it.","Fact: The name Osiris in Egyptian is Usir, and his green skin in art marks him as a god of vegetation and rebirth."),
-E("endC","Ending: A Kingdom Reconciled","Horus takes the throne, but Seth is not erased. He keeps the deserts and the storms, outside the ordered fields — a reminder that chaos is not destroyed, only kept in its place.","In the traditional myth, Seth remains a god after losing to Horus: god of the desert, storms, and foreign lands. Egyptian religion rarely erased a god entirely, even a defeated one; order, Maat, meant holding opposing forces in balance.","Fact: Seth was also a protector in some periods — he was said to defend Ra's barque against Apophis in older versions of the night journey.")
+E("endB","Ending: Rebirth by Magic","Osiris lives again through Isis's magic, and that magic becomes the model for every Egyptian funeral rite: what was done for Osiris, priests would do for the dead, so they too might live again.","In the traditional myth, Isis is the great magician whose spells restore Osiris. Egyptian funerals deliberately echoed this myth: the dead were identified with Osiris, and rites aimed to give them new life as he had received it.","Fact: The name Osiris in Egyptian is Usir, and his green skin in art marks him as a god of vegetation and rebirth."),
+E("endC","Ending: A Kingdom Reconciled","Horus takes the throne, but Seth is not erased. He keeps the deserts and the storms, outside the ordered fields, a reminder that chaos is not destroyed, only kept in its place.","In the traditional myth, Seth remains a god after losing to Horus: god of the desert, storms, and foreign lands. Egyptian religion rarely erased a god entirely, even a defeated one; order, Maat, meant holding opposing forces in balance.","Fact: Seth was also a protector in some periods: he was said to defend Ra's barque against Apophis in older versions of the night journey.")
 ]},
 {id:"heart",title:"3. The Weighing of the Heart",blurb:"You have died. Your heart will be weighed against a feather. How did you live?",codex:["maat","ammit","anubis","thoth"],scenes:[
 S("start","You stand before the Hall of Two Truths. Anubis, jackal-headed god of embalming, takes your heart and lays it on a great scale. On the other pan sits a single feather, the feather of Maat, goddess of truth and order. What do you do?",
 [C("Stand silently and let the scale speak","confess",{courage:1}),C("Speak your life honestly, good and bad alike","confess2",{wisdom:1})]),
-S("confess","The scale trembles. Your heart is heavy with the life you lived — its kindnesses and its failures together. The forty-two judges watch.",
+S("confess","The scale trembles. Your heart is heavy with the life you lived: its kindnesses and its failures together. The forty-two judges watch.",
 [C("Ask for mercy, and name the good you did","feather",{kindness:1}),C("Accept whatever the scale decides","feather2",{courage:1})]),
 S("confess2","You speak plainly: the help you gave, the harm you caused, the debts you left. The judges listen, and the scale steadies.",
 [C("Ask for mercy, and name the good you did","feather",{kindness:1}),C("Accept whatever the scale decides","feather2",{courage:1})]),
@@ -161,15 +163,15 @@ S("feather2","You accept the judgement, whatever it is. The hall falls quiet, an
 [C("Watch the scale, trusting Maat","verdict",{}),C("Plead your case one last time","verdict",{})]),
 S("verdict","Thoth opens his book. The scale has spoken, and now your final bearing matters: how do you meet the judgement?",
 [C("Bow and accept it in silence","endA",{courage:1}),C("Thank the gods and speak your truth once more","endB",{wisdom:1}),C("Ask, humbly, what lies beyond the hall","endC",{kindness:1}),C("Wisdom: Answer the judges with Maat's own words","endD",{wisdom:1},{trait:"wisdom",min:1})]),
-E("endD","Ending: Weighed by Wisdom","You answer the forty-two judges not with pleas but with Maat's own words — truth, balance, order — and Thoth nods as he writes. The scale settles, and the hall itself seems to approve.","In the traditional judgement, the dead declared the Negative Confession before forty-two judges, naming the wrongs they had not done. Knowing Maat — living by truth and balance — was the standard the dead were measured against, not wealth or power.","Fact: The forty-two judges in the Hall of Two Truths each guarded one of the sins the dead denied."),
-E("endA","Ending: Light as a Feather","The scale balances. Your heart is as light as the feather of Maat. Osiris welcomes you, and you walk into the Field of Reeds, where the harvest never fails and the river never floods wrongly.","In the traditional myth, the dead person's heart is weighed against the feather of Maat. If it balances, the person is declared justified and enters the afterlife. If it is heavy with wrongdoing, Ammit devours the heart and the person ceases to exist.","Fact: The heart, not the brain, was thought to hold memory, emotion, and character — which is why it was left in the body during mummification while other organs were removed."),
-E("endB","Ending: Judged by Your Own Words","Your plea is heard, and Thoth records it. The gods weigh your words alongside your heart, and find you honest enough to pass — a reminder that in Egypt, speaking truth was itself a sacred act.","In the traditional myth, the dead also made a Negative Confession, declaring before the gods the wrongs they had not committed — 'I have not stolen, I have not lied.' Truth-telling, Maat, was the order that held the whole world together.","Fact: Maat was both a goddess and a principle: truth, justice, balance, and cosmic order in one word."),
-E("endC","Ending: Mercy Through Acceptance","You do not argue, and you do not bargain. That acceptance itself lightens your heart, and the scale settles in your favour. The Field of Reeds opens before you.","In the traditional myth, the weighing is a judgement, not a bargain — but Egyptian wisdom literature also praised humility, self-control, and knowing one's place in Maat. Versions of the afterlife journey differ in detail, and not every text gives the same route.","Fact: The Book of the Dead is not one book but a collection of spells, personalised for each dead person, to help them pass the judgement and reach the afterlife.")
+E("endD","Ending: Weighed by Wisdom","You answer the forty-two judges not with pleas but with Maat's own words (truth, balance, order), and Thoth nods as he writes. The scale settles, and the hall itself seems to approve.","In the traditional judgement, the dead declared the Negative Confession before forty-two judges, naming the wrongs they had not done. Knowing Maat (living by truth and balance) was the standard the dead were measured against, not wealth or power.","Fact: The forty-two judges in the Hall of Two Truths each guarded one of the sins the dead denied."),
+E("endA","Ending: Light as a Feather","The scale balances. Your heart is as light as the feather of Maat. Osiris welcomes you, and you walk into the Field of Reeds, where the harvest never fails and the river never floods wrongly.","In the traditional myth, the dead person's heart is weighed against the feather of Maat. If it balances, the person is declared justified and enters the afterlife. If it is heavy with wrongdoing, Ammit devours the heart and the person ceases to exist.","Fact: The heart, not the brain, was thought to hold memory, emotion, and character, which is why it was left in the body during mummification while other organs were removed."),
+E("endB","Ending: Judged by Your Own Words","Your plea is heard, and Thoth records it. The gods weigh your words alongside your heart, and find you honest enough to pass, a reminder that in Egypt, speaking truth was itself a sacred act.","In the traditional myth, the dead also made a Negative Confession, declaring before the gods the wrongs they had not committed ('I have not stolen, I have not lied'). Truth-telling, Maat, was the order that held the whole world together.","Fact: Maat was both a goddess and a principle: truth, justice, balance, and cosmic order in one word."),
+E("endC","Ending: Mercy Through Acceptance","You do not argue, and you do not bargain. That acceptance itself lightens your heart, and the scale settles in your favour. The Field of Reeds opens before you.","In the traditional myth, the weighing is a judgement, not a bargain, but Egyptian wisdom literature also praised humility, self-control, and knowing one's place in Maat. Versions of the afterlife journey differ in detail, and not every text gives the same route.","Fact: The Book of the Dead is not one book but a collection of spells, personalised for each dead person, to help them pass the judgement and reach the afterlife.")
 ]},
 {id:"creation",title:"4. The First Mound",blurb:"Before there was a world, there was only water. Watch a god make order from it.",codex:["atum","nun","shu","tefnut","geb","nut"],scenes:[
-S("start","Before sky, before land, before light, there was only Nun: dark, endless water, with no shore and no up or down. Then, from the water, a mound rises — and on it stands Atum, the first god, complete in himself. What does Atum do first?",
+S("start","Before sky, before land, before light, there was only Nun: dark, endless water, with no shore and no up or down. Then, from the water, a mound rises, and on it stands Atum, the first god, complete in himself. What does Atum do first?",
 [C("Speak his own name aloud, and become real","children",{wisdom:1}),C("Reach into the water and lift the mound higher","children2",{courage:1})]),
-S("children","Atum speaks, and the sound itself has power. From himself he brings forth Shu, god of air, and Tefnut, goddess of moisture — the first pair, born of one god alone.",
+S("children","Atum speaks, and the sound itself has power. From himself he brings forth Shu, god of air, and Tefnut, goddess of moisture: the first pair, born of one god alone.",
 [C("Send Shu and Tefnut out to explore the waters","separate",{courage:1}),C("Keep them close and teach them their names","separate2",{wisdom:1})]),
 S("children2","Atum lifts the mound until it stands clear of Nun. It is the first dry land, the first place anything can stand. From that place, he brings forth Shu and Tefnut.",
 [C("Send Shu and Tefnut out to explore the waters","separate",{courage:1}),C("Keep them close and teach them their names","separate2",{wisdom:1})]),
@@ -179,49 +181,49 @@ S("separate2","Shu and Tefnut learn their names and their natures: air that fill
 [C("Let Shu hold the sky apart from the earth","world",{wisdom:1}),C("Let Geb and Nut stay close, earth touching sky","world2",{kindness:1})]),
 S("world","Shu steps between Geb and Nut and lifts the sky high above the earth. Now there is room: air to breathe, land to stand on, sky to look up at. The world has its shape.",
 [C("Name the world, and let the gods take their places","endA",{}),C("Send the Eye out to find what is still lost in the waters","eye",{wisdom:1})]),
-S("eye","The Eye searches the dark water and returns with Shu and Tefnut, lost and found. Atum weeps with joy — and from those tears, the story says, the first people come.",
+S("eye","The Eye searches the dark water and returns with Shu and Tefnut, lost and found. Atum weeps with joy, and from those tears, the story says, the first people come.",
 [C("Let the tears fall, and the world fill with people","endC",{})]),
-S("world2","Geb and Nut stay close, and the world is warm and crowded — but nothing can grow in the dark between them. At last Shu gently lifts Nut, and light finds its way in.",
+S("world2","Geb and Nut stay close, and the world is warm and crowded, but nothing can grow in the dark between them. At last Shu gently lifts Nut, and light finds its way in.",
 [C("Name the world, and let the gods take their places","endB",{})]),
-E("endA","Ending: Order from the Waters","The world stands ordered: Nun below, earth beneath your feet, air between, sky above. It is not finished — gods, people, and kings are still to come — but the shape of everything is set.","In the Heliopolitan creation myth, Atum emerges from the primeval waters of Nun and creates Shu and Tefnut, from whom come Geb (earth) and Nut (sky). Shu separates sky from earth, making room for the world. Other Egyptian cities told it differently: in Memphis, Ptah creates by thought and word; in Hermopolis, eight gods stir the waters first. Versions differ, and Egyptians kept several at once.","Fact: The first mound, the benben, was so important that temple obelisks and pyramid capstones echoed its shape."),
-E("endB","Ending: A World Named","You name each thing as it appears — water, mound, air, moisture, earth, sky — and naming, the Egyptians believed, is itself a kind of creation. The world answers to its names.","In Egyptian thought, knowing and speaking a true name gave power over a thing, which is why gods guarded their secret names and why Isis sought Ra's hidden name in another myth. Creation stories often turn on a spoken word: a god speaks, and what is spoken becomes real.","Fact: Atum's name can mean 'the complete one' — he contains everything that will ever exist, before it exists."),
-E("endC","Ending: The Eye That Found Them","Atum's Eye searches the dark water and brings Shu and Tefnut home. His tears of joy, the myth says, become the first people — a world made not only from power, but from relief and love.","In one version of the story, Atum sends his Eye to find his lost children Shu and Tefnut, and weeps when they return; his tears are said to become humankind. It is a gentler creation story than most: people begin in a god's joy, not in a war or a punishment.","Fact: The Eye of Atum, sent out to search, is an early form of the Eye of Ra — the sun's fierce, watchful power.")
+E("endA","Ending: Order from the Waters","The world stands ordered: Nun below, earth beneath your feet, air between, sky above. It is not finished (gods, people, and kings are still to come), but the shape of everything is set.","In the Heliopolitan creation myth, Atum emerges from the primeval waters of Nun and creates Shu and Tefnut, from whom come Geb (earth) and Nut (sky). Shu separates sky from earth, making room for the world. Other Egyptian cities told it differently: in Memphis, Ptah creates by thought and word; in Hermopolis, eight gods stir the waters first. Versions differ, and Egyptians kept several at once.","Fact: The first mound, the benben, was so important that temple obelisks and pyramid capstones echoed its shape."),
+E("endB","Ending: A World Named","You name each thing as it appears (water, mound, air, moisture, earth, sky), and naming, the Egyptians believed, is itself a kind of creation. The world answers to its names.","In Egyptian thought, knowing and speaking a true name gave power over a thing, which is why gods guarded their secret names and why Isis sought Ra's hidden name in another myth. Creation stories often turn on a spoken word: a god speaks, and what is spoken becomes real.","Fact: Atum's name can mean 'the complete one': he contains everything that will ever exist, before it exists."),
+E("endC","Ending: The Eye That Found Them","Atum's Eye searches the dark water and brings Shu and Tefnut home. His tears of joy, the myth says, become the first people: a world made not only from power, but from relief and love.","In one version of the story, Atum sends his Eye to find his lost children Shu and Tefnut, and weeps when they return; his tears are said to become humankind. It is a gentler creation story than most: people begin in a god's joy, not in a war or a punishment.","Fact: The Eye of Atum, sent out to search, is an early form of the Eye of Ra, the sun's fierce, watchful power.")
 ]},
 {id:"scorpions",title:"5. Isis and the Seven Scorpions",blurb:"A goddess in hiding, a child to protect, and a sting that tests her mercy.",codex:["isis","horus","serqet","heka"],scenes:[
-S("start","Isis is in hiding with her baby, Horus, while Seth hunts them. Seven scorpions offer to guard her on the road: Tefen, Befen, Mestet, Mestetef, Petet, Thetet, and Matet. They are dangerous — and loyal. Do you accept their escort?",
+S("start","Isis is in hiding with her baby, Horus, while Seth hunts them. Seven scorpions offer to guard her on the road: Tefen, Befen, Mestet, Mestetef, Petet, Thetet, and Matet. They are dangerous, and loyal. Do you accept their escort?",
 [C("Accept all seven as guards","road",{courage:1}),C("Accept them, but keep the smallest ones away from the child","road2",{wisdom:1})]),
 S("road","The scorpions march ahead and behind, and no one dares approach. You reach a marsh village, where a rich woman slams her door in your face, but a poor fisher-girl takes you in and shares her bread.",
-[C("Thank the fisher-girl and rest with Horus","sting",{kindness:1}),C("Keep moving — Seth's men may be near","sting2",{courage:1})]),
+[C("Thank the fisher-girl and rest with Horus","sting",{kindness:1}),C("Keep moving. Seth's men may be near","sting2",{courage:1})]),
 S("road2","The great scorpions guard the road while the small ones stay back from Horus. You reach a marsh village, where a rich woman slams her door, but a poor fisher-girl shares her bread.",
-[C("Thank the fisher-girl and rest with Horus","sting",{kindness:1}),C("Keep moving — Seth's men may be near","sting2",{courage:1})]),
+[C("Thank the fisher-girl and rest with Horus","sting",{kindness:1}),C("Keep moving. Seth's men may be near","sting2",{courage:1})]),
 S("sting","While you rest, Tefen slips under the rich woman's door and stings her son. The boy collapses. The rich woman, who turned you away, now runs to you begging for help. Her cries fill the village.",
 [C("Heal the boy, though she turned you away","heal",{kindness:1}),C("Let her feel what rejection costs","heal2",{wisdom:1})]),
 S("sting2","You press on, but Tefen, left behind at the village, stings the rich woman's son in anger at her rudeness. Word races after you: a child is dying, and only your magic can save him.",
 [C("Turn back and heal the boy","heal",{kindness:1}),C("Send word of a healing spell, but do not turn back","heal2",{wisdom:1})]),
-S("heal","Isis lays her hands on the boy and speaks the words against poison. The venom leaves him, and he breathes again. The rich woman weeps — not only for her son, but for the stranger she refused.",
+S("heal","Isis lays her hands on the boy and speaks the words against poison. The venom leaves him, and he breathes again. The rich woman weeps, not only for her son, but for the stranger she refused.",
 [C("Tell her mercy is the price of magic","endA",{}),C("Return to Horus, and keep the child guarded above all","endC",{courage:1})]),
 S("heal2","Isis does not go herself, but her spell travels: the poison is named, commanded, and drawn out. The boy lives, and the village learns that the goddess's power does not depend on her presence.",
 [C("Tell the village the spell's lesson","endB",{})]),
-E("endA","Ending: Healing for All","The boy lives, and Isis's mercy becomes the point of the story: magic that only helped the deserving would be small magic indeed. The fisher-girl's bread and the rich woman's tears are remembered together.","In the traditional tale, Isis, hiding with Horus, is escorted by seven scorpions. When Tefen stings a rich boy whose mother refused Isis shelter, Isis heals the child anyway — her magic is for anyone in need, and the story was used as a real healing spell against scorpion stings.","Fact: Scorpion stings were a genuine danger in Egypt, and spells like this one were copied onto stelae and recited over the bitten person."),
+E("endA","Ending: Healing for All","The boy lives, and Isis's mercy becomes the point of the story: magic that only helped the deserving would be small magic indeed. The fisher-girl's bread and the rich woman's tears are remembered together.","In the traditional tale, Isis, hiding with Horus, is escorted by seven scorpions. When Tefen stings a rich boy whose mother refused Isis shelter, Isis heals the child anyway: her magic is for anyone in need, and the story was used as a real healing spell against scorpion stings.","Fact: Scorpion stings were a genuine danger in Egypt, and spells like this one were copied onto stelae and recited over the bitten person."),
 E("endB","Ending: The Spell That Travels","The boy lives by a spoken spell, not by a touch. In Egypt, words themselves were medicine: to name a poison, command it, and send it back was to defeat it.","In Egyptian magic, heka, words, names, and images carried real power. Healing spells often worked by naming the danger and ordering it away, and the same spell could be spoken by a priest far from the patient.","Fact: The scorpion goddess Serqet, whose name means 'she who lets the throat breathe', protected against venomous bites and guarded the throne."),
-E("endC","Ending: Guarded Child","Horus grows under sevenfold guard, and the scorpions never leave their post. The tale ends not with a battle, but with a child kept safe — the whole point of Isis's long hiding.","In the traditional tale, the seven scorpions guard Isis and Horus while Seth hunts them, and Horus survives to grow up and challenge Seth. The story is less about defeating Seth here than about protection: a mother, a child, and unlikely guards on a dangerous road.","Fact: The seven scorpions are named in the tale: Tefen, Befen, Mestet, Mestetef, Petet, Thetet, and Matet.")
+E("endC","Ending: Guarded Child","Horus grows under sevenfold guard, and the scorpions never leave their post. The tale ends not with a battle, but with a child kept safe, the whole point of Isis's long hiding.","In the traditional tale, the seven scorpions guard Isis and Horus while Seth hunts them, and Horus survives to grow up and challenge Seth. The story is less about defeating Seth here than about protection: a mother, a child, and unlikely guards on a dangerous road.","Fact: The seven scorpions are named in the tale: Tefen, Befen, Mestet, Mestetef, Petet, Thetet, and Matet.")
 ]}
 ];
 var CODEX=[
 {id:"ra",name:"Ra",text:"Sun god, creator and king of the gods in many myths. He sails across the sky by day and through the underworld, the Duat, by night."},
-{id:"apophis",name:"Apophis (Apep)",text:"Serpent of chaos who attacks Ra's barque every night and tries to swallow the sun. He is never finally destroyed — the night journey repeats."},
-{id:"duat",name:"Duat",text:"The Egyptian underworld: a night landscape of gates, rivers, and dangers that Ra — and, after death, every person — must travel through."},
+{id:"apophis",name:"Apophis (Apep)",text:"Serpent of chaos who attacks Ra's barque every night and tries to swallow the sun. He is never finally destroyed. The night journey repeats."},
+{id:"duat",name:"Duat",text:"The Egyptian underworld: a night landscape of gates, rivers, and dangers that Ra (and, after death, every person) must travel through."},
 {id:"set",name:"Set",text:"God of storms, desert, and foreign lands. In the Osiris myth he murders his brother; in older night-journey versions he defends Ra's barque against Apophis."},
 {id:"isis",name:"Isis (Aset)",text:"Goddess of magic, motherhood, and protection. Her name means 'throne'. She searches for Osiris, raises Horus, and heals with spells and words."},
 {id:"osiris",name:"Osiris (Usir)",text:"Murdered king restored by Isis, then ruler and judge of the dead. His green skin marks him as a god of vegetation and rebirth."},
 {id:"horus",name:"Horus",text:"Falcon god, son of Isis and Osiris. He contests Seth for the kingship of Egypt and wins; every living pharaoh was identified with Horus."},
-{id:"seth",name:"Seth",text:"See Set: god of storms and desert, brother and murderer of Osiris, defeated rival of Horus — and still a god, kept in his place rather than erased."},
+{id:"seth",name:"Seth",text:"See Set: god of storms and desert, brother and murderer of Osiris, defeated rival of Horus, and still a god, kept in his place rather than erased."},
 {id:"maat",name:"Maat",text:"Goddess and principle in one word: truth, justice, balance, and cosmic order. Her feather weighs against the heart in the afterlife judgement."},
 {id:"ammit",name:"Ammit",text:"The Devourer: part crocodile, part lion, part hippopotamus. She waits beside the scales and devours hearts heavy with wrongdoing."},
 {id:"anubis",name:"Anubis",text:"Jackal-headed god of embalming and guide of the dead. He lays the heart on the scale in the weighing of the heart."},
 {id:"thoth",name:"Thoth",text:"God of wisdom, writing, and reckoning. He records the result of the heart's weighing and, in the night journey, speaks words of power."},
 {id:"atum",name:"Atum",text:"First god of the Heliopolitan creation myth, complete in himself. His name can mean 'the complete one'. He emerges from Nun and creates Shu and Tefnut."},
-{id:"nun",name:"Nun",text:"The dark, endless primeval waters that existed before creation — no shore, no up or down — from which the first mound rises."},
+{id:"nun",name:"Nun",text:"The dark, endless primeval waters that existed before creation (no shore, no up or down), from which the first mound rises."},
 {id:"shu",name:"Shu",text:"God of air, first child of Atum with Tefnut. He holds the sky, Nut, apart from the earth, Geb, making room for the world."},
 {id:"tefnut",name:"Tefnut",text:"Goddess of moisture, first child of Atum with Shu. With Shu she is the first pair from which the rest of the gods descend."},
 {id:"geb",name:"Geb",text:"God of the earth, son of Shu and Tefnut, father (with Nut) of Osiris, Isis, Seth, and Nephthys."},
@@ -231,15 +233,18 @@ var CODEX=[
 ];
 function findChapter(id){for(var i=0;i<CHAPTERS.length;i++)if(CHAPTERS[i].id===id)return CHAPTERS[i];return null;}
 function findScene(ch,id){for(var i=0;i<ch.scenes.length;i++)if(ch.scenes[i].id===id)return ch.scenes[i];return null;}
+function chapterEndings(ch){var n=0;ch.scenes.forEach(function(sc){if(sc.ending)n++;});return n;}
+function totalEndings(){var n=0;CHAPTERS.forEach(function(ch){n+=chapterEndings(ch);});return n;}
+function foundInChapter(ch){var n=0;Object.keys(endingsFound).forEach(function(k){if(k.indexOf(ch.id+":")===0)n++;});return n;}
 function show(id){["homeScreen","storyScreen","endingScreen","codexScreen","endingsScreen"].forEach(function(x){document.getElementById(x).classList.toggle("hidden",x!==id);});window.scrollTo(0,0);}
 function renderHome(){
 var done=completed.length;
-document.getElementById("homeStats").innerHTML='<span class="pill">Chapters finished: '+done+' / '+CHAPTERS.length+'</span><span class="pill gold">Endings found: '+Object.keys(endingsFound).length+'</span><span class="pill">Codex: '+codexFound.length+' / '+CODEX.length+'</span>';
+document.getElementById("homeStats").innerHTML='<span class="pill">Chapters finished: '+done+' / '+CHAPTERS.length+'</span><span class="pill gold">Endings found: '+Object.keys(endingsFound).length+' / '+totalEndings()+'</span><span class="pill">Codex: '+codexFound.length+' / '+CODEX.length+'</span>';
 var html="";
 CHAPTERS.forEach(function(ch){
 var isDone=completed.indexOf(ch.id)>=0;
-var ends=0;Object.keys(endingsFound).forEach(function(k){if(k.indexOf(ch.id+":")===0)ends++;});
-html+='<button class="chapter-btn" data-ch="'+ch.id+'">'+ch.title+'<small>'+ch.blurb+'</small><small>'+(isDone?"✓ Finished":"Not finished yet")+' · Endings found: '+ends+'</small></button>';
+var ends=foundInChapter(ch);
+html+='<button class="chapter-btn" data-ch="'+ch.id+'">'+ch.title+'<small>'+ch.blurb+'</small><small>'+(isDone?"✓ Finished":"Not finished yet")+' · Endings found: '+ends+' / '+chapterEndings(ch)+'</small></button>';
 });
 document.getElementById("chapterList").innerHTML=html;
 Array.prototype.forEach.call(document.querySelectorAll("[data-ch]"),function(b){b.addEventListener("click",function(){startChapter(b.getAttribute("data-ch"));});});
@@ -274,17 +279,19 @@ box.appendChild(b);
 show("storyScreen");
 }
 function renderEnding(ch,sc){
+var key=ch.id+":"+sc.id,isNew=!endingsFound[key];
 if(completed.indexOf(ch.id)<0){completed.push(ch.id);save("mc-completed",completed);}
-endingsFound[ch.id+":"+sc.id]=true;save("mc-endings",endingsFound);
+endingsFound[key]=true;save("mc-endings",endingsFound);
+document.getElementById("newEndingBadge").classList.toggle("hidden",!isNew);
 document.getElementById("endingTitle").textContent=sc.title;
 document.getElementById("endingText").textContent=sc.text;
 document.getElementById("realMyth").textContent=sc.myth;
 document.getElementById("mythFact").textContent=sc.fact;
 var allDone=completed.length>=CHAPTERS.length;
-document.getElementById("endingMeta").textContent="Chapter: "+ch.title+" · Wisdom "+state.traits.wisdom+" · Courage "+state.traits.courage+" · Kindness "+state.traits.kindness+(allDone?" · All chapters complete!":"");
+document.getElementById("endingMeta").textContent="Chapter: "+ch.title+" · Ending "+foundInChapter(ch)+" of "+chapterEndings(ch)+" in this chapter · Wisdom "+state.traits.wisdom+" · Courage "+state.traits.courage+" · Kindness "+state.traits.kindness+(allDone?" · All chapters complete!":"");
 document.getElementById("copyNote").classList.add("hidden");
 var idx=CHAPTERS.indexOf(ch),nextBtn=document.getElementById("nextBtn");
-if(idx<CHAPTERS.length-1){nextBtn.classList.remove("hidden");nextBtn.onclick=function(){startChapter(CHAPTERS[idx+1].id);};}
+if(idx<CHAPTERS.length-1){nextBtn.classList.remove("hidden");nextBtn.textContent="Next: "+CHAPTERS[idx+1].title+" →";nextBtn.onclick=function(){startChapter(CHAPTERS[idx+1].id);};}
 else{nextBtn.classList.add("hidden");}
 document.getElementById("replayBtn").onclick=function(){startChapter(ch.id);};
 show("endingScreen");
@@ -298,9 +305,9 @@ html+='<div class="myth" style="margin-top:10px"><p style="margin:0"><b>'+(unloc
 document.getElementById("codexList").innerHTML=html;show("codexScreen");
 }
 function renderEndings(){
-var html="";
+var html='<p class="small">'+Object.keys(endingsFound).length+' of '+totalEndings()+' endings found.</p>';
 CHAPTERS.forEach(function(ch){
-html+='<h3>'+ch.title+'</h3>';
+html+='<h3>'+ch.title+' <span class="small">('+foundInChapter(ch)+'/'+chapterEndings(ch)+')</span></h3>';
 ch.scenes.forEach(function(sc){
 if(!sc.ending)return;
 var found=endingsFound[ch.id+":"+sc.id];
@@ -317,7 +324,7 @@ document.getElementById("backBtn").addEventListener("click",renderHome);
 document.getElementById("chaptersBtn").addEventListener("click",renderHome);
 document.getElementById("copyBtn").addEventListener("click",function(){
 var ch=findChapter(state.chapter),sc=findScene(ch,state.scene);
-var txt="Myth Story Choices — "+(ch?ch.title:"")+" — "+(sc?sc.title:"")+". Wisdom "+state.traits.wisdom+", Courage "+state.traits.courage+", Kindness "+state.traits.kindness+". Try it yourself: https://georgestriderbuilds.github.io/myth-choices/";
+var txt="Myth Story Choices: "+(ch?ch.title:"")+". "+(sc?sc.title:"")+". Wisdom "+state.traits.wisdom+", Courage "+state.traits.courage+", Kindness "+state.traits.kindness+". Try it yourself: https://georgestriderbuilds.github.io/myth-choices/";
 function done(){document.getElementById("copyNote").classList.remove("hidden");}
 if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(done);}else{done();}
 });
