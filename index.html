@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Myth Story Choices: A George &amp; Strider collab</title>
+<title>Myth Story Choices: A Jade Static Builds collab</title>
 <style>
   *{box-sizing:border-box}
   html,body{margin:0;padding:0;overflow-x:hidden}
@@ -90,7 +90,7 @@
     <p class="small hidden" id="copyNote">Copied. Paste it anywhere to share it.</p>
   </div>
 
-  <footer>A George &amp; Strider collab, built with Muse. No signup, no upload.</footer>
+  <footer>A Jade Static Builds collab, built with Muse. No signup, no upload.</footer>
 </div>
 <script>
 (function(){
@@ -324,7 +324,7 @@ document.getElementById("backBtn").addEventListener("click",renderHome);
 document.getElementById("chaptersBtn").addEventListener("click",renderHome);
 document.getElementById("copyBtn").addEventListener("click",function(){
 var ch=findChapter(state.chapter),sc=findScene(ch,state.scene);
-var txt="Myth Story Choices: "+(ch?ch.title:"")+". "+(sc?sc.title:"")+". Wisdom "+state.traits.wisdom+", Courage "+state.traits.courage+", Kindness "+state.traits.kindness+". Try it yourself: https://georgestriderbuilds.github.io/myth-choices/";
+var txt="Myth Story Choices: "+(ch?ch.title:"")+". "+(sc?sc.title:"")+". Wisdom "+state.traits.wisdom+", Courage "+state.traits.courage+", Kindness "+state.traits.kindness+". Try it yourself: https://jadestaticbuilds.github.io/myth-choices/";
 function done(){document.getElementById("copyNote").classList.remove("hidden");}
 if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(done);}else{done();}
 });
