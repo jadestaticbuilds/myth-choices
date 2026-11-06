@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <script>
 /* ?view=desktop preview: force desktop theme on narrow screens */
 try {
@@ -16,7 +16,7 @@ try {
   *{box-sizing:border-box}
   html,body{margin:0;padding:0;overflow-x:hidden}
   body{background:#e8d5a8;background-image:radial-gradient(circle at 20% 0%,rgba(212,175,55,.25),transparent 45%),linear-gradient(180deg,#e8d5a8,#dcc184);color:#2b1d0e;font-family:Georgia,"Times New Roman",serif;font-size:18px;line-height:1.55}
-  .wrap{width:100%;max-width:520px;margin:0 auto;padding:14px 14px 28px}
+  .wrap{width:100%;max-width:520px;margin:0 auto;padding:14px 14px calc(28px + env(safe-area-inset-bottom))}
   header{text-align:center;padding:10px 4px 6px;border-bottom:3px double #8a6d1f}
   h1{margin:0;font-size:26px;letter-spacing:2px;color:#7a4d00}
   .deco{font-size:22px;letter-spacing:8px;color:#8a6d1f}
@@ -41,8 +41,8 @@ try {
   .chapter-btn small{display:block;font-weight:400;font-size:14px;opacity:.9}
   .newbadge{display:inline-block;background:#b8860b;color:#fff;font-family:system-ui,sans-serif;font-weight:700;font-size:14px;padding:6px 14px;border-radius:20px;margin:0 0 6px}
   .hidden{display:none}
-  footer{text-align:center;font-size:12px;color:#5a4218;padding:18px 10px 6px;font-family:system-ui,sans-serif}
-  @media (max-width:380px){body{font-size:17px}h1{font-size:23px}.wrap{padding:12px 10px 24px}.card{padding:14px}}
+  footer{text-align:center;font-size:12px;color:#5a4218;padding:18px 10px calc(6px + env(safe-area-inset-bottom));font-family:system-ui,sans-serif}
+  @media (max-width:380px){body{font-size:17px}h1{font-size:23px}.wrap{padding:12px 10px calc(24px + env(safe-area-inset-bottom))}.card{padding:14px}}
 
 /* --- Desktop (Tier 5 desktop-readiness): 1024px and up only. Phone CSS above untouched. --- */
 @media (min-width:1024px){
